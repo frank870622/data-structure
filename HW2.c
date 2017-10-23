@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 int n = 1;
+int printanswer = 1;
 int board[8][8];
-int movey[7] = {1,2,2,1,-1,-2,-2,-1};
-int movex[7] = {-2,-1,1,2,2,1,-1,-2};
+int movex[8] = {1,2,2,1,-1,-2,-2,-1};
+int movey[8] = {-2,-1,1,2,2,1,-1,-2};
 
 int decideroad(int npos[],int modehistory[]){
     int way = 9;
@@ -16,19 +17,21 @@ int decideroad(int npos[],int modehistory[]){
             }
         }
     }
+    /*
     for (int i=0;i<64;++i){
         if(npos[modehistory[i]] == way){
             mode = modehistory[i];
             break;
         }
     }
+    */
     return mode;
 }
 
 int numberofnpos(int x,int y){
     int npos = 0;
-    int nextx[7];
-    int nexty[7];
+    int nextx[8];
+    int nexty[8];
     for(int i=0;i<8;++i){
         nextx[i] = x + movex[i];
         nexty[i] = y + movey[i];
@@ -42,9 +45,9 @@ int numberofnpos(int x,int y){
 }
 
 void findnpos(int *x,int *y){
-    int nextx[7];
-    int nexty[7];
-    int npos[7];
+    int nextx[8];
+    int nexty[8];
+    int npos[8];
     for(int i=0;i<8;++i){
         nextx[i] = *x + movex[i];
         nexty[i] = *y + movey[i];
@@ -69,14 +72,14 @@ void findnpos(int *x,int *y){
         *y = *y + movey[mode];
     }
     else{
-        //printf("error");
-        //exit(1);
+        printanswer = 0;
     }
 
 }
 
 int main(){
     for (;n<=8;++n){
+        printanswer = 1;
         for(int i=0;i<8;++i) {
             for(int j=0;j<8;++j){
                 board[i][j] = 0;
@@ -88,11 +91,17 @@ int main(){
             findnpos(&x,&y);
             board[x][y] = m;
         }
-        for (int i=0;i<n;++i){
-            for(int j=0;j<n;++j){
-                printf("%d\t",board[i][j]);
+        if(printanswer == 1){
+            printf("%d:\n",n);
+            for (int i=0;i<n;++i){
+                for(int j=0;j<n;++j){
+                    printf("%d\t",board[i][j]);
+                }
+                printf("\n");
             }
-            printf("\n");
+        }
+        else if(printanswer == 0){
+            printf("%d:\nno solution\n",n);
         }
         printf("\n");
     }
