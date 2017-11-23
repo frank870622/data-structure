@@ -1,5 +1,3 @@
-//If error occur, please run it under x64 system
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,8 +6,12 @@ typedef struct node{
     struct node *link;
 }NODE;
 
-NODE* xor(NODE* a,NODE* b){
+NODE* xor4(NODE* a,NODE* b){
     int c = (int)a^(int)b;
+    return (NODE*)c;
+};
+NODE* xor8(NODE* a,NODE* b){
+    long long int c = (long long int)a^(long long int)b;
     return (NODE*)c;
 };
 
@@ -29,7 +31,8 @@ int main(){
             maie->link = second;
         }
         else{
-            maie->link = xor(maie->link,second);
+            if(sizeof(NODE*) == 4)  maie->link = xor4(maie->link,second);
+            else if(sizeof(NODE*) == 8)    maie->link = xor8(maie->link,second);
         }
         second->link = maie;
         maie = second;
@@ -42,7 +45,8 @@ int main(){
         NODE* temp = second;
         if(i == 20) printf("%d ",second->data);
         else        printf("%d, ",second->data);
-        second = xor(second->link,maie);
+        if(sizeof(NODE*) == 4)  second = xor4(second->link,maie);
+        else if(sizeof(NODE*) == 8)   second = xor8(second->link,maie);
         maie = temp;
     }
     printf("\n\nThe data from right to left:\n");
@@ -52,7 +56,8 @@ int main(){
         NODE* temp = second;
         if(i == 20) printf("%d ",second->data);
         else        printf("%d, ",second->data);
-        second = xor(second->link,maie);
+        if(sizeof(NODE*) == 4)  second = xor4(second->link,maie);
+        else if(sizeof(NODE*) == 8)    second = xor8(second->link,maie);
         maie = temp;
     }
     printf("\n");

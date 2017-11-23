@@ -9,3 +9,6 @@ F74056166 方嘉祥 資訊109 資料結構 HW4 readme
 	新變數c = (int)a^(int)b;
 	將c 強制轉型成node* 並傳出
 
+xor function 有32和64的版本
+
+
