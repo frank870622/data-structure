@@ -9,11 +9,13 @@ void heightunion(int parent[],int i,int j,int roota,int rootb){
     int temp = roota + rootb;
     if(roota > rootb){
         parent[i] = j;
-        parent[j] = temp;
     }
-    else{
+    else if(roota < rootb){
         parent[j] = i;
-        parent[i] = temp;
+    }
+    else {
+        parent[j] = i;
+        parent[i] = parent[i] - 1;
     }
 }
 int main(){
