@@ -13,6 +13,10 @@ this function run in O(1) time
 
 (d)
 
-in situation 1 heightUnion produces better results
+in situation 1 :collapsing do nothing with yhe tree
+		and the time complexity of heightedunion and weightedunion is same
+		heightedunion and weightedunion are both useful in this situation
 
-in situation 2 weightedUnion produces better results
+in situation 2 :let collapsing get the lowest node of the tree
+		in average weightedunion may create higher tree
+		so heightedUnion produces better results
