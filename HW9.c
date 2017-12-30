@@ -47,8 +47,20 @@ int main(){
     for(int i=0; i<act; ++i){
         te[i] = ee[act-1];
     }
+    for(int i=act-1;i>=0;--i){
+        if(te[i] > lv[endv[i]] - requir[i])
+            te[i] = lv[endv[i]] - requir[i];
+    }
+    int s[act];
+    char c[act];
     for(int i=0; i<act; ++i){
-        printf("%d ",ee[i]);
+        s[i] = abs(ee[i] - te[i]);
+        if(s[i] == 0)   c[i] = 'Y';
+        else    c[i] = 'N';
+    }
+    printf("\nb.\n\te\tt\ts\tc\n");
+    for(int i=0; i<act; ++i){
+        printf("%d\t%d\t%d\t%d\t%c\n",i+1,ee[i],te[i],s[i],c[i]);
     }
 
     return 0;
