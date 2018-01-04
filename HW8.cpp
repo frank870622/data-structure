@@ -31,7 +31,7 @@ void findpath(int f,int parent[]){
     if(f != parent[f])
         findpath(parent[f],parent);
     if(f == parent[f])  cout << f;
-    else    cout << "¡÷" << f;
+    else    cout << "->" << f;
 }
 
 void allCosts(int v,int f){
@@ -46,8 +46,8 @@ void allCosts(int v,int f){
             found[i][j] = false;
         }
     for(k = 0; k < 9; ++k){
-        parent[k][v] = v;
-        distance[k][v] = 0;
+        parent[k][k] = k;
+        distance[k][k] = 0;
         for(i = 0; i < 9; ++i){
             int m,mpos;
             m = a;
@@ -78,4 +78,3 @@ void allCosts(int v,int f){
     }
 
 }
-
