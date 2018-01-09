@@ -20,6 +20,11 @@ int main(){
     for(int i=0; i<maxnode; ++i){
         ev[i] = 0;
     }
+    ev[0] = 0;
+    for(int i=0; i<act; ++i){
+        if(ev[endv[i]] < ev[startv[i]] + requir[i])
+            ev[endv[i]] = ev[startv[i]] + requir[i];
+    }
     for(int i=0; i<act; ++i){
         if(ev[endv[i]] < ev[startv[i]] + requir[i])
             ev[endv[i]] = ev[startv[i]] + requir[i];
@@ -31,7 +36,7 @@ int main(){
         if(lv[startv[i]] > lv[endv[i]] - requir[i])
             lv[startv[i]] = lv[endv[i]] - requir[i];
     }
-    printf("a.\n\te\tl\n");
+    printf("a.\n\tee\tle\n");
     for(int i=0; i<maxnode; ++i){
         printf("%d\t%d\t%d\n",i,ev[i],lv[i]);
     }
@@ -45,7 +50,7 @@ int main(){
             ee[i] = ev[startv[i]];
     }
     for(int i=0; i<act; ++i){
-        te[i] = ee[act-1];
+        te[i] = lv[act-1];
     }
     for(int i=act-1;i>=0;--i){
         if(te[i] > lv[endv[i]] - requir[i])
@@ -58,7 +63,7 @@ int main(){
         if(s[i] == 0)   c[i] = 'Y';
         else    c[i] = 'N';
     }
-    printf("\nb.\n\te\tt\ts\tc\n");
+    printf("\nb.\n\te\tl\ts\tc\n");
     for(int i=0; i<act; ++i){
         printf("%d\t%d\t%d\t%d\t%c\n",i+1,ee[i],te[i],s[i],c[i]);
     }
